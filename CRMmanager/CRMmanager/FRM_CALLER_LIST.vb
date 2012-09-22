@@ -354,8 +354,8 @@
             With DataGridView2.Rows(i)
 
                 Dim telNo As String = .Cells(0).Value.ToString
-                Dim tongDate As String = .Cells(3).Value.ToString
-                Dim tongTime As String = .Cells(4).Value.ToString
+                Dim tongDate As String = .Cells(2).Value.ToString
+                Dim tongTime As String = .Cells(3).Value.ToString
                 Dim frm As FRM_MAIN = Me.MdiParent
                 Call frm.OpenCustomerPopupMod(telNo, tongDate, tongTime)
             End With
