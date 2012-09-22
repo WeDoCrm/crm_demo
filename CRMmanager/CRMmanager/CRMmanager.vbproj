@@ -68,7 +68,7 @@
       <HintPath>C:\Program Files\Reference Assemblies\Microsoft\VSTO\v8.0\Microsoft.Office.Tools.Excel.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-    <Reference Include="MySql.Data, Version=6.4.3.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="mysql.data, Version=6.4.3.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="SkinSoft.AquaSkin, Version=1.1.0.0, Culture=neutral, PublicKeyToken=24427c624576b01d, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -94,6 +94,7 @@
     <Compile Include="AboutBox.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ConstDef.vb" />
     <Compile Include="FRM_CALL_STATISTICS1.designer.vb">
       <DependentUpon>FRM_CALL_STATISTICS1.vb</DependentUpon>
     </Compile>
@@ -466,6 +467,15 @@
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />
     <None Include="Resources\refresh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Add\Elegant.Ui.Common.dll" />
+    <Content Include="Add\Elegant.Ui.NavigationBar.dll" />
+    <Content Include="Add\Elegant.Ui.Ribbon.dll" />
+    <Content Include="Add\mysql.data.dll" />
+    <Content Include="Add\Shellstyle.dll" />
+    <Content Include="Add\SkinSoft.AquaSkin.Design.dll" />
+    <Content Include="Add\SkinSoft.AquaSkin.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
