@@ -428,8 +428,7 @@ Module MiniCTI
 
             strNow1 = "[" & Format(Now, "yyyy-MM-dd HH:mm:ss") & "]"
 
-            sw.WriteLine(strNow1)
-            sw.WriteLine("          " & msg)
+            sw.WriteLine(strNow1 & "          " & msg)
 
             sw.Close()
             fs = Nothing

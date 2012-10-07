@@ -125,60 +125,21 @@ Public Class FRM_CUSTOMER_POPUP1
 
     End Sub
 
-    Declare Function FlashWindowEx Lib "user32" (ByVal pfwi As FLASHWINFO) As Boolean
-
-
-    <Runtime.InteropServices.StructLayout(Runtime.InteropServices.LayoutKind.Sequential)> _
-       Class FLASHWINFO
-        Public Size As Int32
-        Public Hwnd As IntPtr
-        Public Flags As FlashWindowFlags
-        Public Count As Int32
-        Public TimeOut As Int32
-
-        Sub New(ByVal hwnd As IntPtr, ByVal flags As FlashWindowFlags, ByVal count As Int32)
-            Me.New(hwnd, flags, Count, 0)
-        End Sub
-
-        Sub New(ByVal hwnd As IntPtr, ByVal flags As FlashWindowFlags, ByVal count As Int32, ByVal timeout As Int32)
-            With Me
-                .Size = Runtime.InteropServices.Marshal.SizeOf(GetType(FLASHWINFO))
-                Debug.WriteLine(.Size)
-                .Hwnd = hwnd
-                .Flags = flags
-                .Count = Count
-                .TimeOut = timeout
-            End With
-        End Sub
-    End Class
-
-    Enum FlashWindowFlags
-        [Stop] = 0
-        Caption = 1
-        Tray = 2
-        All = Caption Or Tray
-        Timer = 4
-        TimertillforeGround = &HC
-    End Enum
-
 
     Public Sub switchFocus(ByVal focus As PANEL_FOCUS)
-
+        Call WriteLog("switchFocus PANEL_FOCUS=" & focus)
         Select Case focus
             Case PANEL_FOCUS.CUSTOMER_INFO
-                'gbCustomerInfo.BackColor = Color.FromArgb(224, 224, 224) 'System.Drawing.SystemColors.GradientActiveCaption
                 blinkFocus(gbCustomerInfo)
                 gbConsultInfo.BackColor = System.Drawing.SystemColors.Control
                 gbCustomerHistory.BackColor = System.Drawing.SystemColors.Control
             Case PANEL_FOCUS.CONSULT_INFO
                 gbCustomerInfo.BackColor = System.Drawing.SystemColors.Control
-                'gbConsultInfo.BackColor = Color.FromArgb(224, 224, 224) 'System.Drawing.SystemColors.GradientActiveCaption
                 blinkFocus(gbConsultInfo)
                 gbCustomerHistory.BackColor = System.Drawing.SystemColors.Control
             Case PANEL_FOCUS.CONSULT_HISTORY
                 gbCustomerInfo.BackColor = System.Drawing.SystemColors.Control
                 gbConsultInfo.BackColor = System.Drawing.SystemColors.Control
-                'gbCustomerHistory.BackColor = Color.FromArgb(224, 224, 224) 'System.Drawing.SystemColors.GradientActiveCaption
                 blinkFocus(gbCustomerHistory)
             Case PANEL_FOCUS.NONE
                 gbCustomerInfo.BackColor = System.Drawing.SystemColors.Control
@@ -190,17 +151,7 @@ Public Class FRM_CUSTOMER_POPUP1
 
     Private Sub blinkFocus(ByVal sender As System.Object)
         Dim gBox As GroupBox = sender
-        'gBox.BackColor = Color.FromArgb(224, 224, 224)
-        'System.Threading.Thread.Sleep(500)
-        'gBox.BackColor = System.Drawing.SystemColors.Control
-        'System.Threading.Thread.Sleep(500)
-        'gBox.BackColor = Color.FromArgb(224, 224, 224)
-        'System.Threading.Thread.Sleep(500)
-        'gBox.BackColor = System.Drawing.SystemColors.Control
-        'System.Threading.Thread.Sleep(500)
-        gBox.BackColor = Color.MistyRose 'Color.FromArgb(224, 224, 224)
-        Dim x As New FLASHWINFO(Me.Handle, FlashWindowFlags.All, 2)
-        FlashWindowEx(x)
+        gBox.BackColor = Color.MistyRose
     End Sub
 
     Public Sub setIsTransfer(ByVal isTransfer As Boolean)
@@ -227,6 +178,7 @@ Public Class FRM_CUSTOMER_POPUP1
             ElseIf (actionStatus = ConstDef.ActionStatus.OpenEmpty) Then
                 actionStatus = ConstDef.ActionStatus.OpenUserSearched
             End If
+            Call WriteLog("gsSelectPopUp actionStatus=" & actionStatus)
             switchFocus(PANEL_FOCUS.CONSULT_INFO)
             cboConsultType2.Focus()
         End If

@@ -711,11 +711,13 @@ Public Class FRM_MAIN
                 Call pop.gsInit()                   ' 모든 항목을 초기화 시킨다.
                 Exit Sub
             End If
+
             If (CALL_TYPE = "2") Then
                 Call pop.SetActionStatus(ActionStatus.PopUpOutBound)
             Else
                 Call pop.SetActionStatus(ActionStatus.PopUpInBound)
             End If
+
             Call pop.gsInit()                   ' 모든 항목을 초기화 시킨다.
 
             'txtEnteringNo.Text = tel_no
